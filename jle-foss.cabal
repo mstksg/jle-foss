@@ -45,11 +45,11 @@ library
     , vector-sized
 
 -- , auto
--- , dhall-text-shell 
--- , ghcjs-websockets 
--- , interactive-plot 
--- , lens-typelevel 
--- , mutable 
--- , prompt 
--- , type-combinators-singletons 
+-- , dhall-text-shell
+-- , ghcjs-websockets
+-- , interactive-plot
+-- , lens-typelevel
+-- , mutable
+-- , prompt
+-- , type-combinators-singletons
 -- , typelits-printf
