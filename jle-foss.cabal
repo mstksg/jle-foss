@@ -1,0 +1,60 @@
+cabal-version:      3.4
+
+name:               jle-foss
+version:            0.1.0.0
+synopsis:
+  All my FOSS haskell packages building together
+
+description:
+  All my FOSS haskell packages building together
+
+category:           FOSS
+homepage:           https://github.com/mstksg/jle-foss
+bug-reports:        https://github.com/mstksg/jle-foss/issues
+author:             Justin Le
+maintainer:         justin@jle.im
+copyright:          (c) Justin Le 2024
+license:            BSD-3-Clause
+license-file:       LICENSE
+build-type:         Simple
+tested-with:        GHC >=8.10
+
+source-repository head
+  type:     git
+  location: https://github.com/mstksg/jle-foss
+
+library
+  build-depends:
+    , advent-of-code-ocr
+    , backprop 
+    , bins 
+    , conduino 
+    , configurator-export 
+    , decidable 
+    , emd 
+    , functor-combinators 
+    , functor-products 
+    , hakyll-dhall 
+    , hamilton 
+    , hmatrix-backprop 
+    , hmatrix-vector-sized 
+    , list-witnesses 
+    , nonempty-containers 
+    , one-liner-instances 
+    , otp-authenticator 
+    , servant-cli 
+    , servant-validate 
+    , tagged-binary 
+    , typelits-witnesses 
+    , uncertain
+    , uncertain 
+    , vector-sized 
+    -- , auto
+    -- , dhall-text-shell 
+    -- , ghcjs-websockets 
+    -- , interactive-plot 
+    -- , lens-typelevel 
+    -- , mutable 
+    -- , prompt 
+    -- , type-combinators-singletons 
+    -- , typelits-printf

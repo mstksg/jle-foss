@@ -1,28 +1,37 @@
 {
-  description = "All my personal projects building.";
-
+  description = "Basic Haskell Project Flake";
   inputs = {
-    haskellNix.url = "github:input-output-hk/haskell.nix";
-    nixpkgs.follows = "haskellNix/nixpkgs-unstable";
-    flake-utils.url = "github:numtide/flake-utils";
+    haskellProjectFlake.url = "github:mstksg/haskell-project-flake";
+    nixpkgs.follows = "haskellProjectFlake/nixpkgs";
   };
-
-  outputs = { self, nixpkgs, haskellNix, flake-utils }:
-    flake-utils.lib.eachDefaultSystem
-      (system:
-        let
-          pkgs = import nixpkgs {
-            inherit system;
-            inherit (haskellNix) config;
-            overlays = [ haskellNix.overlay ];
-          };
-        in
+  outputs =
+    { self
+    , nixpkgs
+    , flake-utils
+    , haskellProjectFlake
+    }:
+    flake-utils.lib.eachDefaultSystem (system:
+    let
+      name = "jle-foss";
+      pkgs = import nixpkgs {
+        inherit system;
+        overlays = [ haskellProjectFlake.overlays."${system}".default ];
+      };
+      project-flake = pkgs.haskell-project-flake
         {
-          packages.default = pkgs.haskell-nix.cabalProject' {
-            src = ./.;
-            compiler-nix-name = "ghc966";
-          };
-        }
-      );
+          inherit name;
+          src = ./.;
+          excludeCompilerMajors = [ "ghc810" "ghc90" ];
+          defaultCompiler = "ghc982";
+        };
+    in
+    {
+      packages = project-flake.packages;
+      apps = project-flake.apps;
+      checks = project-flake.checks;
+      devShells = project-flake.devShells;
+      legacyPackages."${name}" = project-flake;
+    }
+    );
 }
 
